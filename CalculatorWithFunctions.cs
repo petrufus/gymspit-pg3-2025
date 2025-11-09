@@ -6,11 +6,8 @@ double ReadDouble(ref bool Exit, bool ZeroAllowed)
         string inp = Console.ReadLine();
         if (inp == "exit") { Exit = true; break; }
         bool isANumber = double.TryParse(inp, out double A);
-        if (isANumber && (ZeroAllowed|| A != 0 ))
-        {
-            isANumber = true;
-            return A;
-        }
+        if (isANumber && (ZeroAllowed || A != 0))
+        {  return A; }
         else { Console.WriteLine($" '{inp}' is not a valid number!, reenter a valid number to continue"); }
     }
     return 0;
@@ -31,8 +28,7 @@ void PrintMenu()
 
 string ReadOperation(ref bool Exit)
 {
-    bool success = false;
-    while (!success)
+    while (true)
     {
 
         Console.WriteLine("valid operators: [+] [-] [*] [/]");
@@ -49,7 +45,6 @@ string ReadOperation(ref bool Exit)
             case "*":
             case "/":
 
-                success = true;
                 return operation;
 
             default:
@@ -109,9 +104,9 @@ void calculator()
         double B = ReadDouble(ref Exit, ZeroAllowed);
         if (Exit) { break; }
 
-       // Console.WriteLine(" ");
+        // Console.WriteLine(" ");
         Console.WriteLine("Numbers selected");
-     Console.Clear();
+        Console.Clear();
         Console.WriteLine(" ");
 
         double result = Compute(operation, A, B);
